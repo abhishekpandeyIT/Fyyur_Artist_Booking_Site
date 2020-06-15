@@ -1,6 +1,6 @@
-#----------------------------------------------------------------------------#
-# Imports
-#----------------------------------------------------------------------------#
+'''
+Importing all the required Libraries
+'''
 
 import json
 import dateutil.parser
@@ -16,19 +16,19 @@ from models import db_setup, Venue, Show, Artist
 from sqlalchemy import func
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import aliased
-#----------------------------------------------------------------------------#
-# App Config.
-#----------------------------------------------------------------------------#
+
+'''
+App Configuration
+'''
 
 app = Flask(__name__)
 moment = Moment(app)
 db = db_setup(app)
 
 
-
-#----------------------------------------------------------------------------#
-# Filters.
-#----------------------------------------------------------------------------#
+'''
+Filters
+'''
 
 def format_datetime(value, format='medium'):
   date = dateutil.parser.parse(value)
@@ -40,18 +40,18 @@ def format_datetime(value, format='medium'):
 
 app.jinja_env.filters['datetime'] = format_datetime
 
-#----------------------------------------------------------------------------#
-# Controllers.
-#----------------------------------------------------------------------------#
+'''
+Controllers
+'''
 
 @app.route('/')
 def index():
   return render_template('pages/home.html')
 
 
-#  Venues
-#  ----------------------------------------------------------------
-
+'''
+Venues
+'''
 @app.route('/venues')
 def venues():
   # TODO: replace with real venues data.
